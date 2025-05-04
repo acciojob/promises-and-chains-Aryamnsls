@@ -1,5 +1,5 @@
 document.getElementById("vote-form").addEventListener("submit", function (e) {
-  e.preventDefault(); // Prevent form from submitting normally
+  e.preventDefault();
 
   const nameInput = document.getElementById("name");
   const ageInput = document.getElementById("age");
@@ -7,20 +7,19 @@ document.getElementById("vote-form").addEventListener("submit", function (e) {
   const name = nameInput.value.trim();
   const ageValue = ageInput.value.trim();
 
-  // Check if both fields are filled
+  // Fix: No period in the alert
   if (name === "" || ageValue === "") {
-    alert("Please enter valid details.");  // Alert text should match the test expectation
+    alert("Please enter valid details");
     return;
   }
 
   const age = parseInt(ageValue, 10);
 
   if (isNaN(age)) {
-    alert("Please enter valid details.");  // Alert text should match the test expectation
+    alert("Please enter valid details");
     return;
   }
 
-  // Promise to check eligibility after 4 seconds
   new Promise((resolve, reject) => {
     setTimeout(() => {
       if (age >= 18) {
@@ -30,6 +29,6 @@ document.getElementById("vote-form").addEventListener("submit", function (e) {
       }
     }, 4000);
   })
-    .then((message) => alert(message.trim()))  // Trim any extra spaces
-    .catch((error) => alert(error.trim()));   // Trim any extra spaces
+    .then((message) => alert(message.trim()))
+    .catch((error) => alert(error.trim()));
 });
