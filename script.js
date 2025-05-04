@@ -1,14 +1,26 @@
 document.getElementById("vote-form").addEventListener("submit", function (e) {
-  e.preventDefault(); // prevent page reload
+  e.preventDefault(); // Prevent form from submitting normally
 
-  const name = document.getElementById("name").value.trim();
-  const age = parseInt(document.getElementById("age").value);
+  const nameInput = document.getElementById("name");
+  const ageInput = document.getElementById("age");
 
-  if (!name || isNaN(age)) {
+  const name = nameInput.value.trim();
+  const ageValue = ageInput.value.trim();
+
+  // Check if both fields are filled
+  if (name === "" || ageValue === "") {
     alert("Please enter valid details.");
     return;
   }
 
+  const age = parseInt(ageValue, 10);
+
+  if (isNaN(age)) {
+    alert("Please enter valid details.");
+    return;
+  }
+
+  // Promise to check eligibility after 4 seconds
   new Promise((resolve, reject) => {
     setTimeout(() => {
       if (age >= 18) {
