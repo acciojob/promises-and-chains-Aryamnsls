@@ -9,14 +9,14 @@ document.getElementById("vote-form").addEventListener("submit", function (e) {
 
   // Check if both fields are filled
   if (name === "" || ageValue === "") {
-    alert("Please enter valid details.");
+    alert("Please enter valid details.");  // Make sure the alert message is exact
     return;
   }
 
   const age = parseInt(ageValue, 10);
 
   if (isNaN(age)) {
-    alert("Please enter valid details.");
+    alert("Please enter valid details.");  // Make sure the alert message is exact
     return;
   }
 
@@ -30,6 +30,6 @@ document.getElementById("vote-form").addEventListener("submit", function (e) {
       }
     }, 4000);
   })
-    .then((message) => alert(message))
-    .catch((error) => alert(error));
+    .then((message) => alert(message.trim()))  // Ensure no extra spaces
+    .catch((error) => alert(error.trim()));   // Ensure no extra spaces
 });
